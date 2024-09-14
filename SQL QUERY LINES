@@ -1,0 +1,81 @@
+SELECT
+CASE
+WHEN company_name = 'Flash Cab' THEN 'Flash Cab'
+WHEN company_name = 'Taxi Affiliation Services' THEN 'Taxi Affiliation Services'
+ELSE 'Other'
+END AS company,
+COUNT (trips.trip_id) AS trips_amount
+FROM
+cabs
+INNER JOIN
+trips ON trips. cab_id = cabs. cab_id
+WHERE
+start_ts::date BETWEEN '2017-11-01' AND '2017-11-07'
+GROUP BY
+company
+ORDER BY
+trips_amount
+
+start_ts,
+T. weather_conditions, duration_seconds
+FROM
+trips
+INNER JOIN (
+SELECT
+tS.
+CASE
+WHEN description LIKE '%rain%'
+OR description LIKE '%storm%' THEN 'Bad'
+ELSE 'Good'
+END AS weather_conditions
+FROM
+weather_records
+/ T ON T. ts=trips.start_ts
+WHERE
+pickup_location_id = 50 AND dropoff_location_id = 63 AND EXTRACT (DOW FIOm
+trips.start_ts)= 6
+ORDER BY trip_id
+
+SELECT
+start_ts,
+t. weather_conditions, duration_seconds from trips
+INNER JOIN (
+SELECT ts,
+CASE
+WHEN description LIKE '%rain%' OR description LIKE '%storm%' THEN 'Bad'
+ELSE 'Good'
+END AS weather_conditions
+FROM
+weather_records
+) T ON T.ts = trips.start_ts
+WHERE
+ORDER BY trip_id
+pickup_location_id =
+
+SELECT DISTINCT
+name_store AS store_name, date_upd: :date AS sale_date, category AS category,
+SUM(price) OVER (
+PARTITION BY
+name_store, category, date_upd
+) * 100 / SUM(price) OVER (
+PARTITION BY
+name_store, date_upd
+) AS percent
+FROM
+products_data_all
+WHERE
+date_upd: :date BETWEEN '2019-06-01'
+AND '2019-06-06'
+ORDER BY
+date_upd:: date, name_store;
+
+
+
+
+
+
+
+
+
+
+
